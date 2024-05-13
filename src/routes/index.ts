@@ -1,5 +1,5 @@
 // Layouts
-import HeaderOnly from "../components/Layout/HeaderOnly/HeaderOnly";
+import HeaderOnly from "../components/Layouts/HeaderOnly/HeaderOnly";
 
 // Pages
 import Home from "../pages/Home/Home";
@@ -34,6 +34,7 @@ const publicRoutes = [
   },
 ];
 
-const priveRoutes = [];
+// const priveRoutes = [];
 
-export { publicRoutes, priveRoutes };
+// export { publicRoutes, priveRoutes };
+export { publicRoutes };
