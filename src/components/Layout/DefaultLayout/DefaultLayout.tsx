@@ -1,8 +1,8 @@
 import Header from "../components/Header/Header";
 import Sidebar from "./Sibar/Sidebar";
 
-type DefaultLayoutProps = {
-  children: React.ReactNode;
+export type DefaultLayoutProps = {
+  children: React.ReactElement;
 };
 
 function DefaultLayout({ children }: DefaultLayoutProps) {

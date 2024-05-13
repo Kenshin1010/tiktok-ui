@@ -1,7 +1,7 @@
 import Header from "../components/Header/Header";
 
 type HeaderOnlyProps = {
-  children: React.ReactNode;
+  children: React.ReactElement;
 };
 
 function HeaderOnly({ children }: HeaderOnlyProps) {
