@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleXmark,
+  faPlus,
+  faSpinner,
+} from "@fortawesome/free-solid-svg-icons";
 import tiktokLogo from "../../../../assets/images/tiktok.svg";
-import SearchIcon from "../SearchIcon";
+import SearchIcon from "../jsx-icon/SearchIcon";
 
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
@@ -12,6 +16,7 @@ import Wrapper from "../../../Popper/Wrapper";
 import "tippy.js/dist/tippy.css";
 import Tippy from "@tippyjs/react/headless";
 import AccountItem from "../../../AccountItem/AccountItem";
+import Button from "../../../Button/Button";
 
 const cx = classNames.bind(styles);
 function Header() {
@@ -58,7 +63,18 @@ function Header() {
             </button>
           </div>
         </Tippy>
-        <div className={cx("action")}></div>
+        <div className={cx("action")}>
+          <Button
+            outline
+            to="upload"
+            leftIcon={<FontAwesomeIcon icon={faPlus} />}
+          >
+            Upload
+          </Button>
+          <Button primary to="login">
+            Log in
+          </Button>
+        </div>
       </div>
     </header>
   );
