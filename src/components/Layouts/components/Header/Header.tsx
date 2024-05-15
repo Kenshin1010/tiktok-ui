@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faCircleQuestion,
   faCircleXmark,
+  faEarthEurope,
+  faEllipsisVertical,
+  faKeyboard,
   faPlus,
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
@@ -17,8 +21,25 @@ import "tippy.js/dist/tippy.css";
 import Tippy from "@tippyjs/react/headless";
 import AccountItem from "../../../AccountItem/AccountItem";
 import Button from "../../../Button/Button";
+import Menu from "../../../Popper/Menu/Menu";
 
 const cx = classNames.bind(styles);
+
+const MENU_ITEMS = [
+  {
+    icon: <FontAwesomeIcon icon={faEarthEurope} />,
+    title: "English",
+  },
+  {
+    icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+    title: "Feedback and help",
+    to: "/feedback",
+  },
+  {
+    icon: <FontAwesomeIcon icon={faKeyboard} />,
+    title: "Keyboard shortcuts",
+  },
+];
 function Header() {
   const [searchResult, setSearchResult] = useState<number[]>([]);
 
@@ -74,6 +95,12 @@ function Header() {
           <Button primary to="login">
             Log in
           </Button>
+
+          <Menu items={MENU_ITEMS}>
+            <button className={cx("more-btn")}>
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </button>
+          </Menu>
         </div>
       </div>
     </header>

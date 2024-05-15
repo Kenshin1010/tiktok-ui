@@ -4,17 +4,18 @@
   justify-content: center;
   text-align: center;
   font-size: 1.6rem;
-  font-weight: 700;
+  font-weight: 600;
   min-width: 100px;
   padding: 5px 16px;
   border-radius: 4px;
+  color: var(--text-color);
   background-color: #fff;
   border: 1px solid transparent;
   cursor: pointer;
   user-select: none;
 
   + .wrapper {
-    margin-left: 8px;
+    margin-left: 16px;
   }
 
   &.disabled {
@@ -25,7 +26,13 @@
 
 .icon + .title,
 .title + .icon {
-  margin-left: 4px;
+  margin-left: 8px;
+}
+
+.icon {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
 }
 
 // Button types

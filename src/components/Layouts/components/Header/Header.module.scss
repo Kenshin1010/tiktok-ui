@@ -122,3 +122,12 @@ input:not(:placeholder-shown) ~ .search-btn {
   align-items: center;
   justify-content: space-between;
 }
+
+.more-btn {
+  color: var(--text-color);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-left: 1px;
+  padding: 4px 12px;
+  background-color: transparent;
+}
