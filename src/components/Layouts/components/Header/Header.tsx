@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleQuestion,
   faCircleXmark,
@@ -10,18 +9,20 @@ import {
   faPlus,
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import tiktokLogo from "../../../../assets/images/tiktok.svg";
 import SearchIcon from "../jsx-icon/SearchIcon";
 
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 
-import Wrapper from "../../../Popper/Wrapper";
-import "tippy.js/dist/tippy.css";
 import Tippy from "@tippyjs/react/headless";
+import "tippy.js/dist/tippy.css";
 import AccountItem from "../../../AccountItem/AccountItem";
 import Button from "../../../Button/Button";
 import Menu from "../../../Popper/Menu/Menu";
+import { MenuItemProps } from "../../../Popper/Menu/MenuItem";
+import Wrapper from "../../../Popper/Wrapper";
 
 const cx = classNames.bind(styles);
 
@@ -29,6 +30,21 @@ const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faEarthEurope} />,
     title: "English",
+    children: {
+      title: "Language",
+      data: [
+        {
+          type: "language",
+          code: "en",
+          title: "English",
+        },
+        {
+          type: "language",
+          code: "vi",
+          title: "Tiếng Việt",
+        },
+      ],
+    },
   },
   {
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -49,6 +65,21 @@ function Header() {
     }, 0);
     return () => clearTimeout(timer);
   }, []);
+
+  // Handle logic
+  const handleMenuChange = (item: MenuItemProps) => {
+    const isParent = !!item.children;
+    if (isParent) {
+      switch (item.children.data[0].type) {
+        case "language":
+          // Handle change language
+          console.log(item.children.data[0].code);
+          break;
+        default:
+          break;
+      }
+    }
+  };
 
   return (
     <header className={cx("wrapper")}>
@@ -96,7 +127,7 @@ function Header() {
             Log in
           </Button>
 
-          <Menu items={MENU_ITEMS}>
+          <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
             <button className={cx("more-btn")}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>

@@ -20,14 +20,11 @@
   width: 100%;
   background-color: #fff;
   max-width: 100%;
-  padding-right: 24px;
-  padding-left: 16px;
+  padding-right: var(--default-layout-horizontal-spacer-right);
+  padding-left: var(--default-layout-horizontal-spacer-left);
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.logo {
 }
 
 .search,
@@ -127,7 +124,8 @@ input:not(:placeholder-shown) ~ .search-btn {
   color: var(--text-color);
   font-size: 2rem;
   font-weight: 600;
-  margin-left: 1px;
-  padding: 4px 12px;
+  margin-left: 16px;
+  padding: 0 12px;
   background-color: transparent;
+  cursor: pointer;
 }
