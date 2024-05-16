@@ -68,17 +68,7 @@ function Header() {
 
   // Handle logic
   const handleMenuChange = (item: MenuItemProps) => {
-    const isParent = !!item.children;
-    if (isParent) {
-      switch (item.children.data[0].type) {
-        case "language":
-          // Handle change language
-          console.log(item.children.data[0].code);
-          break;
-        default:
-          break;
-      }
-    }
+    console.log("item:", item);
   };
 
   return (

@@ -24,6 +24,10 @@ function Menu({ children, items = [], onChange = defaultFn }: MenuProps) {
   const [history, setHistory] = useState([{ data: items }]);
   const current = history[history.length - 1];
   const renderItems = () => {
+    if (!Array.isArray(current.data)) {
+      // Xử lý khi current.data không phải là mảng
+      return null;
+    }
     return current.data.map((item, index) => {
       const isParent = !!item.children;
       return (
@@ -32,7 +36,9 @@ function Menu({ children, items = [], onChange = defaultFn }: MenuProps) {
           {...item}
           onClick={() => {
             if (isParent) {
-              setHistory((prev) => [...prev, { data: item.children ?? [] }]);
+              setHistory((prev) => [...prev, item.children]);
+              console.log("typeof item.children:", typeof item.children);
+              console.log("typeof history:", typeof history);
             } else {
               onChange(item);
             }
