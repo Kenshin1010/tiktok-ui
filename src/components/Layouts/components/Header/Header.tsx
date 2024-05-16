@@ -1,8 +1,6 @@
 import {
   faBookmark,
   faLightbulb,
-  faMessage,
-  faPaperPlane,
   faUser,
 } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -25,10 +23,13 @@ import styles from "./Header.module.scss";
 import Tippy from "@tippy.js/react";
 import "tippy.js/dist/tippy.css";
 
-import Search from "../../../Popper/Search/Search";
-import Menu from "../../../Popper/Menu/Menu";
+import InboxIcon from "../../../../assets/icons-jsx/InboxIcon";
+import MessageIcon from "../../../../assets/icons-jsx/MessageIcon";
 import Button from "../../../Button/Button";
+import Menu from "../../../Popper/Menu/Menu";
 import { MenuItemProps } from "../../../Popper/Menu/MenuItem";
+import Search from "../../../Popper/Search/Search";
+import Image from "../../../Image/Image";
 
 const cx = classNames.bind(styles);
 
@@ -130,14 +131,22 @@ function Header() {
 
           {currentUser ? (
             <>
-              <Tippy interactive content="Messages" placement="bottom">
+              <Tippy
+                interactive
+                content={<span>Messages</span>}
+                placement="bottom"
+              >
                 <button className={cx("action-btn")}>
-                  <FontAwesomeIcon icon={faPaperPlane} />
+                  <MessageIcon />
                 </button>
               </Tippy>
-              <Tippy interactive content="Inbox" placement="bottom">
+              <Tippy
+                interactive
+                content={<span>Inbox</span>}
+                placement="bottom"
+              >
                 <button className={cx("action-btn")}>
-                  <FontAwesomeIcon icon={faMessage} />
+                  <InboxIcon />
                 </button>
               </Tippy>
             </>
@@ -153,10 +162,11 @@ function Header() {
           >
             {currentUser ? (
               <button className={cx("action-avatar")}>
-                <img
+                <Image
                   className={cx("user-avatar")}
                   src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/7103407749668536322~c5_300x300.webp?lk3s=a5d48078&x-expires=1715853600&x-signature=sZ%2Bp3tg1GBF%2F7kFRKQEYSa0zMS0%3D"
                   alt="相沢みなみ"
+                  // fallback="https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/7368530302823563282.jpeg?lk3s=a5d48078&x-expires=1716026400&x-signature=eRCXCPEaH%2FPLls5ALj6MSsPaxNE%3D"
                 />
               </button>
             ) : (

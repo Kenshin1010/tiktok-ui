@@ -35,11 +35,14 @@
 }
 
 .action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: transparent;
   font-size: 2rem;
   color: var(--text-color);
   padding: 4px 0 4px 24px;
-  line-height: 24px;
+  line-height: 36px;
   cursor: pointer;
 }
 
