@@ -36,12 +36,41 @@ function Menu({ children, items = [], onChange = defaultFn }: MenuProps) {
           {...item}
           onClick={() => {
             if (isParent) {
-              setHistory((prev) => [...prev, item.children]);
-              console.log("typeof item.children:", typeof item.children);
-              console.log("typeof history:", typeof history);
+              // Chuyển đổi item.children thành mảng MenuItemProps[]
+              const childrenArray: MenuItemProps[] = item.children
+                ? item.children.data.map((child) => ({
+                    title: child.title,
+                    icon: undefined, // Thêm icon nếu cần
+                    to: undefined, // Thêm to nếu cần
+                    children: undefined, // Thêm children nếu cần
+                  }))
+                : [];
+
+              // Thêm childrenArray vào history
+              setHistory((prev) => [...prev, { data: childrenArray }]);
             } else {
               onChange(item);
             }
+            // if (isParent) {
+            //   setHistory((prev) => [...prev, item.children]);
+            //   console.log("history: ", typeof history);
+            //   console.log("item.children: ", typeof item.children);
+            //   // { data: Array.isArray(item.children) ? item.children : [] },
+            //   //   {
+            //   //     data: item.children
+            //   //       ? (item.children as unknown as MenuItemProps[])
+            //   //       : [],
+            //   //   },
+            //   //   {
+            //   //     data: Array.isArray(item.children)
+            //   //       ? (item.children as MenuItemProps[])
+            //   //       : [],
+            //   //   },
+            //   console.log("typeof item.children:", typeof item.children);
+            //   console.log("typeof history:", typeof history);
+            // } else {
+            //   onChange(item);
+            // }
           }}
         />
       );
