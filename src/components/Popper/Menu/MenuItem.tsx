@@ -17,6 +17,7 @@ export type MenuItemProps = {
   icon: React.ReactNode;
   title: string;
   to?: string;
+  separate?: boolean;
   children?: {
     title: string;
     data: {
@@ -28,14 +29,18 @@ export type MenuItemProps = {
   onClick?: () => void;
 };
 
-function MenuItem({ icon, title, to, onClick }: MenuItemProps) {
+function MenuItem({
+  icon,
+  title,
+  to,
+  onClick,
+  separate = false,
+}: MenuItemProps) {
+  const classes = cx("menu-item", {
+    separate: separate,
+  });
   return (
-    <Button
-      className={cx("menu-item")}
-      to={to}
-      leftIcon={icon}
-      onClick={onClick}
-    >
+    <Button className={classes} to={to} leftIcon={icon} onClick={onClick}>
       {title}
     </Button>
   );

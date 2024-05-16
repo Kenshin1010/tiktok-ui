@@ -27,97 +27,20 @@
   justify-content: space-between;
 }
 
-.search,
-.search-results {
-  width: 498px;
-}
-
-.search {
-  position: relative;
-  height: var(--search-height);
-  padding-left: 16px;
-  background-color: rgba(22, 24, 35, 0.06);
-  border-radius: var(--search-border-radius);
-  display: flex;
-  border: 1px solid transparent;
-
-  input {
-    flex: 1;
-    height: 100%;
-    font-size: 1.6rem;
-    font-weight: 400;
-    border: none;
-    outline: none;
-    caret-color: var(--primary);
-    color: var(--text-color);
-    background-color: transparent;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    width: 1px;
-    height: calc(var(--search-height) - var(--search-top-spacer) * 2);
-    top: var(--search-top-spacer);
-    right: var(--search-bottom-width);
-    transition: all 0.3s ease-in-out;
-    background-color: rgba(22, 24, 35, 0.12);
-  }
-
-  &:focus-within {
-    border-color: rgba(22, 24, 35, 0.2);
-  }
-
-  &:hover {
-    border-color: rgba(22, 24, 35, 0.2);
-    .search-btn {
-      color: rgba(22, 24, 35, 0.75);
-      background-color: rgba(22, 24, 35, 0.06);
-    }
-  }
-}
-
-input:not(:placeholder-shown) ~ .search-btn {
-  color: rgba(22, 24, 35, 0.75);
-}
-
-.search-title {
-  padding: 5px 12px;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: rgba(22, 24, 35, 0.5);
-}
-
-.clear,
-.loading {
-  color: rgba(22, 24, 35, 0.34);
-  position: absolute;
-  font-size: 16px;
-  right: calc(var(--search-bottom-width) + 16px);
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.search-btn {
-  width: var(--search-bottom-width);
-  height: 100%;
-  border-top-right-radius: var(--search-border-radius);
-  border-bottom-right-radius: var(--search-border-radius);
-  color: rgba(22, 24, 35, 0.34);
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &:active {
-    background-color: rgba(22, 24, 35, 0.06);
-  }
-}
-
-.action {
+// Actions
+.actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.action-btn {
+  background-color: transparent;
+  font-size: 2rem;
+  color: var(--text-color);
+  padding: 4px 0 4px 24px;
+  line-height: 24px;
+  cursor: pointer;
 }
 
 .more-btn {
@@ -128,4 +51,19 @@ input:not(:placeholder-shown) ~ .search-btn {
   padding: 0 12px;
   background-color: transparent;
   cursor: pointer;
+}
+
+.action-avatar {
+  cursor: pointer;
+  margin-left: 24px;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+
+  .user-avatar {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 }

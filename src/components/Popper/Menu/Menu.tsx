@@ -1,5 +1,5 @@
-import Tippy from "@tippyjs/react/headless";
 import { ReactElement, useState } from "react";
+import Tippy from "@tippyjs/react/headless";
 import "tippy.js/dist/tippy.css";
 
 import classNames from "classnames/bind";
@@ -81,6 +81,7 @@ function Menu({ children, items = [], onChange = defaultFn }: MenuProps) {
     <Tippy
       interactive
       placement="bottom-end"
+      // offset={[12, 8]}
       render={(attrs) => (
         <div className={cx("menu-list")} tabIndex={-1} {...attrs}>
           <Wrapper className={cx("menu-popper")}>
