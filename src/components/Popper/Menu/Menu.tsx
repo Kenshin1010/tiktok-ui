@@ -1,5 +1,6 @@
-import Tippy from "@tippyjs/react";
+import Tippy from "@tippyjs/react/headless";
 import { ReactElement, useState } from "react";
+import "tippy.js/dist/tippy.css";
 
 import classNames from "classnames/bind";
 import styles from "./Menu.module.scss";
@@ -39,8 +40,8 @@ function Menu({ children, items = [], onChange = defaultFn }: MenuProps) {
               // Chuyển đổi item.children thành mảng MenuItemProps[]
               const childrenArray: MenuItemProps[] = item.children
                 ? item.children.data.map((child) => ({
-                    title: child.title,
                     icon: undefined, // Thêm icon nếu cần
+                    title: child.title,
                     to: undefined, // Thêm to nếu cần
                     children: undefined, // Thêm children nếu cần
                   }))
@@ -79,8 +80,6 @@ function Menu({ children, items = [], onChange = defaultFn }: MenuProps) {
   return (
     <Tippy
       interactive
-      visible
-      delay={[0, 700]}
       placement="bottom-end"
       render={(attrs) => (
         <div className={cx("menu-list")} tabIndex={-1} {...attrs}>
@@ -97,6 +96,7 @@ function Menu({ children, items = [], onChange = defaultFn }: MenuProps) {
           </Wrapper>
         </div>
       )}
+      onHidden={() => setHistory((prev) => prev.slice(0, 1))}
     >
       {children}
     </Tippy>
