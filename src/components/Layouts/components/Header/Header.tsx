@@ -80,7 +80,7 @@ function Header() {
     {
       icon: <FontAwesomeIcon icon={faUser} />,
       title: "View profile",
-      to: "/profile",
+      to: "/@:nickname",
     },
     {
       icon: <FontAwesomeIcon icon={faBookmark} />,

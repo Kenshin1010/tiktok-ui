@@ -6,7 +6,7 @@ import styles from "./Search.module.scss";
 
 import Wrapper from "../../../Popper/Wrapper";
 import SearchIcon from "../jsx-icon/SearchIcon";
-import AccountItem from "../../../AccountItem/AccountItem";
+import AccountItem, { AccountData } from "../../../AccountItem/AccountItem";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -14,17 +14,37 @@ import { faCircleXmark, faSpinner } from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(styles);
 function Search() {
   const [searchValue, setSearchValue] = useState("");
-  const [searchResult, setSearchResult] = useState<number[]>([]);
+  const [searchResult, setSearchResult] = useState<AccountData[]>([]);
   const [showResult, setShowResult] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
-
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setSearchResult([1, 1, 1, 1]);
-    }, 0);
-    return () => clearTimeout(timer);
-  }, []);
+    if (!searchValue.trim()) {
+      setSearchResult([]);
+      return;
+    }
+
+    setLoading(true);
+
+    fetch(
+      `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
+        searchValue
+      )}&type=less`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setSearchResult(res.data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+    // const timer = setTimeout(() => {
+    //   setSearchResult([1, 1, 1, 1]);
+    // }, 0);
+    // return () => clearTimeout(timer);
+  }, [searchValue]);
 
   const handleClear = () => {
     setSearchValue("");
@@ -48,12 +68,9 @@ function Search() {
         <div className={cx("search-results")} tabIndex={-1} {...attrs}>
           <Wrapper>
             <h4 className={cx("search-title")}>Accounts</h4>
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
+            {searchResult.map((result: AccountData) => (
+              <AccountItem key={result.id} data={result} />
+            ))}
           </Wrapper>
         </div>
       )}
@@ -69,7 +86,7 @@ function Search() {
             handleShowResult();
           }}
         />
-        {!!searchValue && (
+        {!!searchValue && !loading && (
           <button
             className={cx("clear")}
             onClick={() => {
@@ -79,7 +96,9 @@ function Search() {
             <FontAwesomeIcon icon={faCircleXmark} />
           </button>
         )}
-        {/* <FontAwesomeIcon className={cx("loading")} icon={faSpinner} /> */}
+        {loading && (
+          <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
+        )}
         <button className={cx("search-btn")}>
           <SearchIcon />
         </button>

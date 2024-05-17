@@ -70,6 +70,19 @@ input:not(:placeholder-shown) ~ .search-btn {
   transform: translateY(-50%);
 }
 
+.loading {
+  animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
 .search-btn {
   width: var(--search-bottom-width);
   height: 100%;
