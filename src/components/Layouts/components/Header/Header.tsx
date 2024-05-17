@@ -28,7 +28,7 @@ import MessageIcon from "../../../../assets/icons-jsx/MessageIcon";
 import Button from "../../../Button/Button";
 import Menu from "../../../Popper/Menu/Menu";
 import { MenuItemProps } from "../../../Popper/Menu/MenuItem";
-import Search from "../../../Popper/Search/Search";
+import Search from "../Search/Search";
 import Image from "../../../Image/Image";
 
 const cx = classNames.bind(styles);
