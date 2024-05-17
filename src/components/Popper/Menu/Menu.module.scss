@@ -26,6 +26,11 @@
   padding-bottom: 8px;
 }
 
+.menu-body {
+  overflow-y: auto;
+  max-height: min(-156px + 100vh, 734px);
+}
+
 // Header
 .header {
   position: relative;

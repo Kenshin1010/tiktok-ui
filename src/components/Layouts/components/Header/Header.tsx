@@ -166,9 +166,9 @@ function Header() {
               <button className={cx("action-avatar")}>
                 <Image
                   className={cx("user-avatar")}
-                  src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/7103407749668536322~c5_300x300.webp?lk3s=a5d48078&x-expires=1715853600&x-signature=sZ%2Bp3tg1GBF%2F7kFRKQEYSa0zMS0%3D"
+                  src="src/assets/images/minami_aizawa_.webp"
                   alt="相沢みなみ"
-                  // fallback="https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/7368530302823563282.jpeg?lk3s=a5d48078&x-expires=1716026400&x-signature=eRCXCPEaH%2FPLls5ALj6MSsPaxNE%3D"
+                  fallback="src/assets/images/minami_aizawa_.webp"
                 />
               </button>
             ) : (

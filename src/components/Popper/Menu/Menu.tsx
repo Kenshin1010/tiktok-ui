@@ -58,26 +58,6 @@ function Menu({
             } else {
               onChange(item);
             }
-            // if (isParent) {
-            //   setHistory((prev) => [...prev, item.children]);
-            //   console.log("history: ", typeof history);
-            //   console.log("item.children: ", typeof item.children);
-            //   // { data: Array.isArray(item.children) ? item.children : [] },
-            //   //   {
-            //   //     data: item.children
-            //   //       ? (item.children as unknown as MenuItemProps[])
-            //   //       : [],
-            //   //   },
-            //   //   {
-            //   //     data: Array.isArray(item.children)
-            //   //       ? (item.children as MenuItemProps[])
-            //   //       : [],
-            //   //   },
-            //   console.log("typeof item.children:", typeof item.children);
-            //   console.log("typeof history:", typeof history);
-            // } else {
-            //   onChange(item);
-            // }
           }}
         />
       );
@@ -88,7 +68,7 @@ function Menu({
       interactive
       hideOnClick={hideOnClick}
       placement="bottom-end"
-      // offset={[12, 8]}
+      offset={[12, 8]}
       render={(attrs) => (
         <div className={cx("menu-list")} tabIndex={-1} {...attrs}>
           <Wrapper className={cx("menu-popper")}>
@@ -100,7 +80,7 @@ function Menu({
                 }}
               />
             )}
-            {renderItems()}
+            <div className={cx("menu-body")}>{renderItems()}</div>
           </Wrapper>
         </div>
       )}

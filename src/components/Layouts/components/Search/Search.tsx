@@ -66,49 +66,53 @@ function Search() {
   };
 
   return (
-    <HeadlessTippy
-      interactive
-      visible={showResult && searchResult.length > 0}
-      render={(attrs) => (
-        <div className={cx("search-results")} tabIndex={-1} {...attrs}>
-          <Wrapper>
-            <h4 className={cx("search-title")}>Accounts</h4>
-            {searchResult.map((result: AccountData) => (
-              <AccountItem key={result.id} data={result} />
-            ))}
-          </Wrapper>
-        </div>
-      )}
-      onClickOutside={handleHideResult}
-    >
-      <div className={cx("search")}>
-        <input
-          ref={inputRef}
-          value={searchValue}
-          placeholder="Search"
-          onChange={handleChange}
-          onFocus={() => {
-            handleShowResult();
-          }}
-        />
-        {!!searchValue && !loading && (
-          <button
-            className={cx("clear")}
-            onClick={() => {
-              handleClear();
+    // Using a wrapper <div> or <span> tag around the reference element
+    // solves this by creating a new parentNode context.
+    <span>
+      <HeadlessTippy
+        interactive
+        visible={showResult && searchResult.length > 0}
+        render={(attrs) => (
+          <div className={cx("search-results")} tabIndex={-1} {...attrs}>
+            <Wrapper>
+              <h4 className={cx("search-title")}>Accounts</h4>
+              {searchResult.map((result: AccountData) => (
+                <AccountItem key={result.id} data={result} />
+              ))}
+            </Wrapper>
+          </div>
+        )}
+        onClickOutside={handleHideResult}
+      >
+        <div className={cx("search")}>
+          <input
+            ref={inputRef}
+            value={searchValue}
+            placeholder="Search"
+            onChange={handleChange}
+            onFocus={() => {
+              handleShowResult();
             }}
-          >
-            <FontAwesomeIcon icon={faCircleXmark} />
+          />
+          {!!searchValue && !loading && (
+            <button
+              className={cx("clear")}
+              onClick={() => {
+                handleClear();
+              }}
+            >
+              <FontAwesomeIcon icon={faCircleXmark} />
+            </button>
+          )}
+          {loading && (
+            <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
+          )}
+          <button className={cx("search-btn")} onMouseDown={handleSubmit}>
+            <SearchIcon />
           </button>
-        )}
-        {loading && (
-          <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
-        )}
-        <button className={cx("search-btn")} onMouseDown={handleSubmit}>
-          <SearchIcon />
-        </button>
-      </div>
-    </HeadlessTippy>
+        </div>
+      </HeadlessTippy>
+    </span>
   );
 }
 
