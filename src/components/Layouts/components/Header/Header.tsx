@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   faBookmark,
   faLightbulb,
@@ -16,6 +17,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import tiktokLogo from "../../../../assets/images/tiktok.svg";
+import routesConfig from "../../../../config/routes";
 
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
@@ -106,7 +108,7 @@ function Header() {
     {
       icon: <FontAwesomeIcon icon={faArrowRightToBracket} />,
       title: "Log out",
-      to: "/",
+      to: routesConfig.home,
       separate: true,
     },
   ];
@@ -114,9 +116,9 @@ function Header() {
   return (
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
-        <div className={cx("logo")}>
+        <Link to={routesConfig.home} className={cx("logo-link")}>
           <img width="118" height="42" alt="TikTok Logo" src={tiktokLogo} />
-        </div>
+        </Link>
 
         <Search />
 

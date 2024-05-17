@@ -1,5 +1,5 @@
 import HeadlessTippy from "@tippyjs/react/headless";
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from "react";
 import useDebounce from "../../../../hooks/useDebounce";
 import * as searchServices from "../../../../apiServices/searchServices";
 
@@ -54,6 +54,17 @@ function Search() {
     setShowResult(true);
   };
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const searchValue = e.target.value;
+    if (!searchValue.startsWith(" ")) {
+      setSearchValue(searchValue);
+    }
+  };
+
+  const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault;
+  };
+
   return (
     <HeadlessTippy
       interactive
@@ -75,7 +86,7 @@ function Search() {
           ref={inputRef}
           value={searchValue}
           placeholder="Search"
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={handleChange}
           onFocus={() => {
             handleShowResult();
           }}
@@ -93,7 +104,7 @@ function Search() {
         {loading && (
           <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
         )}
-        <button className={cx("search-btn")}>
+        <button className={cx("search-btn")} onMouseDown={handleSubmit}>
           <SearchIcon />
         </button>
       </div>

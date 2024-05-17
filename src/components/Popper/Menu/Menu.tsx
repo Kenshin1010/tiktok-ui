@@ -14,6 +14,7 @@ const cx = classNames.bind(styles);
 type MenuProps = {
   children: ReactElement;
   items: MenuItemProps[];
+  hideOnClick?: boolean;
   onChange?: (item: MenuItemProps) => void;
 };
 
@@ -21,7 +22,12 @@ const defaultFn = () => {
   console.log("defaultFn");
 };
 
-function Menu({ children, items = [], onChange = defaultFn }: MenuProps) {
+function Menu({
+  children,
+  items = [],
+  hideOnClick = false,
+  onChange = defaultFn,
+}: MenuProps) {
   const [history, setHistory] = useState([{ data: items }]);
   const current = history[history.length - 1];
   const renderItems = () => {
@@ -80,6 +86,7 @@ function Menu({ children, items = [], onChange = defaultFn }: MenuProps) {
   return (
     <Tippy
       interactive
+      hideOnClick={hideOnClick}
       placement="bottom-end"
       // offset={[12, 8]}
       render={(attrs) => (
