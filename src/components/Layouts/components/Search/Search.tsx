@@ -1,16 +1,17 @@
-import { useEffect, useState, useRef } from "react";
-import useDebounce from "../../../../hooks/useDebounce";
 import HeadlessTippy from "@tippyjs/react/headless";
+import { useEffect, useRef, useState } from "react";
+import useDebounce from "../../../../hooks/useDebounce";
+import * as searchServices from "../../../../apiServices/searchServices";
 
 import classNames from "classnames/bind";
 import styles from "./Search.module.scss";
 
+import AccountItem, { AccountData } from "../../../AccountItem/AccountItem";
 import Wrapper from "../../../Popper/Wrapper";
 import SearchIcon from "../jsx-icon/SearchIcon";
-import AccountItem, { AccountData } from "../../../AccountItem/AccountItem";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const cx = classNames.bind(styles);
 function Search() {
@@ -19,39 +20,29 @@ function Search() {
   const [showResult, setShowResult] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  const debounce = useDebounce({ value: searchValue, delay: 500 });
+  const debounced = useDebounce({ value: searchValue, delay: 500 });
 
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
-    if (!debounce.trim()) {
+    if (!debounced.trim()) {
       setSearchResult([]);
       return;
     }
+    const fetchApi = async () => {
+      setLoading(true);
 
-    setLoading(true);
+      const result = await searchServices.search(debounced);
 
-    fetch(
-      `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        debounce
-      )}&type=less`
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        setSearchResult(res.data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-    // const timer = setTimeout(() => {
-    //   setSearchResult([1, 1, 1, 1]);
-    // }, 0);
-    // return () => clearTimeout(timer);
-  }, [debounce]);
+      setSearchResult(result);
+      setLoading(false);
+    };
+
+    fetchApi();
+  }, [debounced]);
 
   const handleClear = () => {
     setSearchValue("");
-    // setSearchResult([]);
+    setSearchResult([]);
     inputRef.current?.focus();
   };
 
