@@ -16,8 +16,9 @@ import {
   faVideo,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import tiktokLogo from "../../../../assets/images/tiktok.svg";
-import routesConfig from "../../../../config/routes";
+import tiktokLogo from "../../../assets/images/tiktok.svg";
+import minamiAizawaImage from "../../../assets/images/minami_aizawa_.webp";
+import config from "../../../config";
 
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
@@ -25,13 +26,13 @@ import styles from "./Header.module.scss";
 import Tippy from "@tippy.js/react";
 import "tippy.js/dist/tippy.css";
 
-import InboxIcon from "../../../../assets/icons-jsx/InboxIcon";
-import MessageIcon from "../../../../assets/icons-jsx/MessageIcon";
-import Button from "../../../Button/Button";
-import Menu from "../../../Popper/Menu/Menu";
-import { MenuItemProps } from "../../../Popper/Menu/MenuItem";
+import InboxIcon from "../../../assets/icons-jsx/InboxIcon";
+import MessageIcon from "../../../assets/icons-jsx/MessageIcon";
+import Button from "../../../components/Button/Button";
+import Menu from "../../../components/Popper/Menu/Menu";
+import { MenuItemProps } from "../../../components/Popper/Menu/MenuItem";
+import Image from "../../../components/Image/Image";
 import Search from "../Search/Search";
-import Image from "../../../Image/Image";
 
 const cx = classNames.bind(styles);
 
@@ -108,7 +109,7 @@ function Header() {
     {
       icon: <FontAwesomeIcon icon={faArrowRightToBracket} />,
       title: "Log out",
-      to: routesConfig.home,
+      to: config.routes.home,
       separate: true,
     },
   ];
@@ -116,7 +117,7 @@ function Header() {
   return (
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
-        <Link to={routesConfig.home} className={cx("logo-link")}>
+        <Link to={config.routes.home} className={cx("logo-link")}>
           <img width="118" height="42" alt="TikTok Logo" src={tiktokLogo} />
         </Link>
 
@@ -166,9 +167,9 @@ function Header() {
               <button className={cx("action-avatar")}>
                 <Image
                   className={cx("user-avatar")}
-                  src="src/assets/images/minami_aizawa_.webp"
+                  src={minamiAizawaImage}
                   alt="相沢みなみ"
-                  fallback="src/assets/images/minami_aizawa_.webp"
+                  fallback={minamiAizawaImage}
                 />
               </button>
             ) : (
