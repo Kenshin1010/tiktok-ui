@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { ForwardedRef, forwardRef, useState } from "react";
 import images from "../../assets/images/index";
 import styles from "./Image.module.scss";
@@ -11,7 +12,7 @@ const Image = forwardRef(
       alt = "",
       fallback: customFallback = images.noImage,
       ...props
-    }: { className: string; src: string; alt?: string; fallback?: string },
+    }: { className?: string; src: string; alt?: string; fallback?: string },
     ref: ForwardedRef<HTMLImageElement>
   ) => {
     const [fallback, setFallback] = useState<string | undefined>();
@@ -32,5 +33,12 @@ const Image = forwardRef(
     );
   }
 );
+
+Image.propTypes = {
+  className: PropTypes.string,
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string,
+  fallback: PropTypes.string,
+};
 
 export default Image;

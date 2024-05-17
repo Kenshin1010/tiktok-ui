@@ -1,17 +1,10 @@
+import PropTypes from "prop-types";
+
 import Button from "../../Button/Button";
 import classNames from "classnames/bind";
 import styles from "./Menu.module.scss";
 
 const cx = classNames.bind(styles);
-
-// export type MenuItemChild = {
-//   title: string;
-//   data: {
-//     type: string;
-//     code: string;
-//     title: string;
-//   }[];
-// };
 
 export type MenuItemProps = {
   icon: React.ReactNode;
@@ -45,5 +38,13 @@ function MenuItem({
     </Button>
   );
 }
+
+MenuItem.propTypes = {
+  icon: PropTypes.node,
+  title: PropTypes.string.isRequired,
+  to: PropTypes.string,
+  onClick: PropTypes.func,
+  separate: PropTypes.bool,
+};
 
 export default MenuItem;

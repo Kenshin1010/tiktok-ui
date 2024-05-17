@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import { ReactElement, useState } from "react";
 import Tippy from "@tippyjs/react/headless";
 import "tippy.js/dist/tippy.css";
@@ -30,6 +32,9 @@ function Menu({
 }: MenuProps) {
   const [history, setHistory] = useState([{ data: items }]);
   const current = history[history.length - 1];
+
+  const [headerTitle, setHeaderTitle] = useState("");
+
   const renderItems = () => {
     if (!Array.isArray(current.data)) {
       // Xử lý khi current.data không phải là mảng
@@ -46,12 +51,17 @@ function Menu({
               // Chuyển đổi item.children thành mảng MenuItemProps[]
               const childrenArray: MenuItemProps[] = item.children
                 ? item.children.data.map((child) => ({
-                    icon: undefined, // Thêm icon nếu cần
+                    icon: undefined,
                     title: child.title,
-                    to: undefined, // Thêm to nếu cần
-                    children: undefined, // Thêm children nếu cần
+                    to: undefined,
+                    children: undefined,
                   }))
                 : [];
+
+              // Cập nhật headerTitle
+              if (item.children && item.children.title) {
+                setHeaderTitle(item.children.title);
+              }
 
               // Thêm childrenArray vào history
               setHistory((prev) => [...prev, { data: childrenArray }]);
@@ -74,7 +84,7 @@ function Menu({
           <Wrapper className={cx("menu-popper")}>
             {history.length > 1 && (
               <Header
-                title="Language"
+                title={headerTitle}
                 onBack={() => {
                   setHistory((prev) => prev.slice(0, prev.length - 1));
                 }}
@@ -90,5 +100,12 @@ function Menu({
     </Tippy>
   );
 }
+
+Menu.propTypes = {
+  children: PropTypes.node.isRequired,
+  items: PropTypes.array,
+  hideOnClick: PropTypes.bool,
+  onChange: PropTypes.func,
+};
 
 export default Menu;

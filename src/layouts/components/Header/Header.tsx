@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   faBookmark,
   faLightbulb,
@@ -16,8 +15,9 @@ import {
   faVideo,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import tiktokLogo from "../../../assets/images/tiktok.svg";
+import { Link } from "react-router-dom";
 import minamiAizawaImage from "../../../assets/images/minami_aizawa_.webp";
+import tiktokLogo from "../../../assets/images/tiktok.svg";
 import config from "../../../config";
 
 import classNames from "classnames/bind";
@@ -29,9 +29,9 @@ import "tippy.js/dist/tippy.css";
 import InboxIcon from "../../../assets/icons-jsx/InboxIcon";
 import MessageIcon from "../../../assets/icons-jsx/MessageIcon";
 import Button from "../../../components/Button/Button";
+import Image from "../../../components/Image/Image";
 import Menu from "../../../components/Popper/Menu/Menu";
 import { MenuItemProps } from "../../../components/Popper/Menu/MenuItem";
-import Image from "../../../components/Image/Image";
 import Search from "../Search/Search";
 
 const cx = classNames.bind(styles);
@@ -134,24 +134,28 @@ function Header() {
 
           {currentUser ? (
             <>
-              <Tippy
-                interactive
-                content={<span>Messages</span>}
-                placement="bottom"
-              >
-                <button className={cx("action-btn")}>
-                  <MessageIcon />
-                </button>
-              </Tippy>
-              <Tippy
-                interactive
-                content={<span>Inbox</span>}
-                placement="bottom"
-              >
-                <button className={cx("action-btn")}>
-                  <InboxIcon />
-                </button>
-              </Tippy>
+              <span>
+                <Tippy
+                  interactive
+                  content={<span>Messages</span>}
+                  placement="bottom"
+                >
+                  <button className={cx("action-btn")}>
+                    <MessageIcon />
+                  </button>
+                </Tippy>
+              </span>
+              <span>
+                <Tippy
+                  interactive
+                  content={<span>Inbox</span>}
+                  placement="bottom"
+                >
+                  <button className={cx("action-btn")}>
+                    <InboxIcon />
+                  </button>
+                </Tippy>
+              </span>
             </>
           ) : (
             <Button primary to="login">
