@@ -73,28 +73,40 @@ function Menu({
       );
     });
   };
+
+  const handleBack = () => {
+    setHistory((prev) => prev.slice(0, prev.length - 1));
+  };
+
+  interface ITippy {
+    "data-placement": string;
+    "data-reference-hidden"?: string;
+    "data-escaped"?: string;
+  }
+  const renderResult = (attrs: ITippy) => (
+    <div className={cx("menu-list")} tabIndex={-1} {...attrs}>
+      <Wrapper className={cx("menu-popper")}>
+        {history.length > 1 && (
+          <Header title={headerTitle} onBack={handleBack} />
+        )}
+        <div className={cx("menu-body")}>{renderItems()}</div>
+      </Wrapper>
+    </div>
+  );
+
+  // Reset to first page
+  const handleReset = () => {
+    setHistory((prev) => prev.slice(0, 1));
+  };
+
   return (
     <Tippy
       interactive
       hideOnClick={hideOnClick}
       placement="bottom-end"
       offset={[12, 8]}
-      render={(attrs) => (
-        <div className={cx("menu-list")} tabIndex={-1} {...attrs}>
-          <Wrapper className={cx("menu-popper")}>
-            {history.length > 1 && (
-              <Header
-                title={headerTitle}
-                onBack={() => {
-                  setHistory((prev) => prev.slice(0, prev.length - 1));
-                }}
-              />
-            )}
-            <div className={cx("menu-body")}>{renderItems()}</div>
-          </Wrapper>
-        </div>
-      )}
-      onHidden={() => setHistory((prev) => prev.slice(0, 1))}
+      render={renderResult}
+      onHidden={handleReset}
     >
       {children}
     </Tippy>

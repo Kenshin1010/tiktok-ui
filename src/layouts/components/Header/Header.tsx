@@ -36,7 +36,7 @@ import Search from "../Search/Search";
 
 const cx = classNames.bind(styles);
 
-const currentUser = "true";
+const currentUser = true;
 
 const MENU_ITEMS = [
   {
