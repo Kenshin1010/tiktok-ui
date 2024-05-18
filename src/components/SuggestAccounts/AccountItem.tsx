@@ -3,6 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
 import styles from "./SuggestAccounts.module.scss";
+import Tippy from "@tippyjs/react/headless";
+import ITippy from "../Popper/ITippy";
+import Wrapper from "../Popper/Wrapper";
+import AccountPreview from "./AccountPreview/AccountPreview";
+import DavidBeckham from "../../assets/images/davidbeckham.webp";
 
 const cx = classNames.bind(styles);
 
@@ -10,24 +15,48 @@ const cx = classNames.bind(styles);
 //   children?: React.ReactNode;
 // };
 
+const renderPreview = (attrs: ITippy): React.ReactNode => {
+  return (
+    <div className={cx("preview")} tabIndex={-1} {...attrs}>
+      <Wrapper className={cx("menu-popper")}>
+        <AccountPreview />
+      </Wrapper>
+    </div>
+  );
+};
+
 function AccountItem() {
   return (
-    <div className={cx("account-item")}>
-      <img
-        className={cx("avatar")}
-        src="https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-euttp/3d007eb544d9e31adb124febfaf41e80~c5_100x100.jpeg?lk3s=30310797&nonce=19134&refresh_token=2e1fd53506616e120a3115bde655eab2&x-expires=1716102000&x-signature=Jr1a8CgaL4RAqFPJEFaiGc%2Frqzk%3D&shp=30310797&shcp=811c9dc5"
-        alt="David Beckham"
-      />
-      <div className={cx("item-info")}>
-        <div className={cx("nickname")}>
-          <h4>davidbeckham</h4>
-          {true && (
-            <FontAwesomeIcon className={cx("verified")} icon={faCheckCircle} />
-          )}
+    // Fix warning Tippy
+    <span>
+      <Tippy
+        interactive
+        delay={[800, 100]}
+        offset={[-10, 0]}
+        placement="bottom"
+        render={renderPreview}
+      >
+        <div className={cx("account-item")}>
+          <img
+            className={cx("avatar")}
+            src={DavidBeckham}
+            alt="David Beckham"
+          />
+          <div className={cx("item-info")}>
+            <div className={cx("nickname")}>
+              <h4>davidbeckham</h4>
+              {true && (
+                <FontAwesomeIcon
+                  className={cx("verified")}
+                  icon={faCheckCircle}
+                />
+              )}
+            </div>
+            <span className={cx("name")}>David Beckham</span>
+          </div>
         </div>
-        <span className={cx("name")}>David Beckham</span>
-      </div>
-    </div>
+      </Tippy>
+    </span>
   );
 }
 

@@ -36,7 +36,7 @@ function Sidebar() {
   };
   return (
     <aside className={cx("wrapper")}>
-      <Menu>
+      <Menu className={cx("sidebar-menu")}>
         <MenuItem
           title="For You"
           to={config.routes.home}

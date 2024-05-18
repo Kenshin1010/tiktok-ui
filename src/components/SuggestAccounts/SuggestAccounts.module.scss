@@ -9,7 +9,7 @@
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--text-color);
+  color: var(--title-color);
 }
 
 // Account item
@@ -66,4 +66,13 @@
   font-weight: 700;
   color: var(--primary);
   padding: 8px;
+}
+
+// Popper Wrapper
+.preview {
+  // width: 320px;
+}
+
+.menu-popper {
+  width: 320px;
 }

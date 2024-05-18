@@ -5,13 +5,17 @@
   background-color: var(--white);
   perspective: 1px;
   overscroll-behavior-y: contain;
+  overflow-y: overlay;
   transform-style: preserve-3d;
   perspective-origin: right top;
-  overflow: hidden auto;
   bottom: 0;
   top: var(--default-layout-header-height);
   position: fixed;
   z-index: 99;
+}
+
+.sidebar-menu {
+  overflow-y: hidden auto;
 }
 
 .sidebar-avatar {

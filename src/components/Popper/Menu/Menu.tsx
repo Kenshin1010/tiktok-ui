@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { ReactElement, useState } from "react";
 import Tippy from "@tippyjs/react/headless";
 import "tippy.js/dist/tippy.css";
+import ITippy from "../ITippy";
 
 import classNames from "classnames/bind";
 import styles from "./Menu.module.scss";
@@ -78,11 +79,6 @@ function Menu({
     setHistory((prev) => prev.slice(0, prev.length - 1));
   };
 
-  interface ITippy {
-    "data-placement": string;
-    "data-reference-hidden"?: string;
-    "data-escaped"?: string;
-  }
   const renderResult = (attrs: ITippy) => (
     <div className={cx("menu-list")} tabIndex={-1} {...attrs}>
       <Wrapper className={cx("menu-popper")}>
