@@ -1,8 +1,8 @@
 .wrapper {
   width: 240px;
-  height: 356px;
+  min-height: 356px;
   padding: 20px 0 26px 8px;
-  background: rgb(255, 255, 255);
+  background-color: var(--white);
   perspective: 1px;
   overscroll-behavior-y: contain;
   transform-style: preserve-3d;

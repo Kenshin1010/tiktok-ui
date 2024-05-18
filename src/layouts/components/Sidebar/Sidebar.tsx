@@ -17,6 +17,7 @@ import UserGroupIcon from "../tsx-icon/UserGroupIcon";
 import UserPlusActiveIcon from "../tsx-icon/UserPlusActiveIcon";
 import UserPlusIcon from "../tsx-icon/UserPlusIcon";
 import Menu, { MenuItem } from "./Menu";
+import SuggestAccounts from "../../../components/SuggestAccounts";
 
 const cx = classNames.bind(styles);
 
@@ -121,6 +122,8 @@ function Sidebar() {
           }
         />
       </Menu>
+      <SuggestAccounts label="Suggested accounts"></SuggestAccounts>
+      <SuggestAccounts label="Following accounts"></SuggestAccounts>
     </aside>
   );
 }

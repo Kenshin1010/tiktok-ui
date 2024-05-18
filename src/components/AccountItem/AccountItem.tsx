@@ -21,13 +21,13 @@ function AccountItem({ data }: { data: AccountData }) {
     <Link to={`/@${data.nickname}`} className={cx("wrapper")}>
       <Image className={cx("avatar")} src={data.avatar} alt="data.avatar" />
       <div className={cx("info")}>
-        <h4 className={cx("username")}>{data.nickname}</h4>
-        <p className={cx("name")}>
-          <span>{data.full_name}</span>
+        <div className={cx("username-verified")}>
+          <h4 className={cx("username")}>{data.nickname}</h4>
           {data.tick && (
             <FontAwesomeIcon className={cx("verified")} icon={faCheckCircle} />
           )}
-        </p>
+        </div>
+        <span className={cx("name")}>{data.full_name}</span>
       </div>
     </Link>
   );
