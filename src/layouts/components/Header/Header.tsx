@@ -26,8 +26,8 @@ import styles from "./Header.module.scss";
 import Tippy from "@tippy.js/react";
 import "tippy.js/dist/tippy.css";
 
-import InboxIcon from "../../../assets/icons-jsx/InboxIcon";
-import MessageIcon from "../../../assets/icons-jsx/MessageIcon";
+import InboxIcon from "../tsx-icon/InboxIcon";
+import MessageIcon from "../tsx-icon/MessageIcon";
 import Button from "../../../components/Button/Button";
 import Image from "../../../components/Image/Image";
 import Menu from "../../../components/Popper/Menu/Menu";

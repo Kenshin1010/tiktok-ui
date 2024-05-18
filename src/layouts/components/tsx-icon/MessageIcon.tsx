@@ -1,4 +1,4 @@
-import { IconProps } from "./IconProps";
+import { IconProps } from "../../../assets/icons-tsx/IconProps";
 
 const MessageIcon = ({
   width = "2.6rem",

@@ -13,7 +13,7 @@ import Wrapper from "../../../components/Popper/Wrapper";
 
 import { faCircleXmark, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SearchIcon from "../jsx-icon/SearchIcon";
+import SearchIcon from "../tsx-icon/SearchIcon";
 
 const cx = classNames.bind(styles);
 function Search() {

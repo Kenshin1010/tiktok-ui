@@ -1,4 +1,4 @@
-import { IconProps } from "./IconProps";
+import { IconProps } from "../../../assets/icons-tsx/IconProps";
 
 const InboxIcon = ({
   width = "3.2rem",
