@@ -22,6 +22,7 @@ import SuggestAccounts from "../../../components/SuggestAccounts";
 const cx = classNames.bind(styles);
 
 function Sidebar() {
+  const currentUser = localStorage.getItem("currentUser") === "true";
   const ProfileIcon = () => {
     return (
       <button className={cx("sidebar-avatar")}>
@@ -107,20 +108,22 @@ function Sidebar() {
             </span>
           }
         />
-        <MenuItem
-          title="Profile"
-          to={config.routes.profile}
-          icon={
-            <Link to={"/@:nickname"} className={cx("sidebar-icon-wrapper")}>
-              <ProfileIcon />
-            </Link>
-          }
-          activeIcon={
-            <Link to={"/@:nickname"} className={cx("sidebar-icon-wrapper")}>
-              <ProfileIcon />
-            </Link>
-          }
-        />
+        {currentUser && (
+          <MenuItem
+            title="Profile"
+            to={config.routes.profile}
+            icon={
+              <Link to={"/@:nickname"} className={cx("sidebar-icon-wrapper")}>
+                <ProfileIcon />
+              </Link>
+            }
+            activeIcon={
+              <Link to={"/@:nickname"} className={cx("sidebar-icon-wrapper")}>
+                <ProfileIcon />
+              </Link>
+            }
+          />
+        )}
       </Menu>
       <SuggestAccounts label="Suggested accounts"></SuggestAccounts>
       <SuggestAccounts label="Following accounts"></SuggestAccounts>

@@ -33,10 +33,9 @@ import Image from "../../../components/Image/Image";
 import Menu from "../../../components/Popper/Menu/Menu";
 import { MenuItemProps } from "../../../components/Popper/Menu/MenuItem";
 import Search from "../Search/Search";
+import { useEffect, useState } from "react";
 
 const cx = classNames.bind(styles);
-
-const currentUser = true;
 
 const MENU_ITEMS = [
   {
@@ -75,6 +74,14 @@ const MENU_ITEMS = [
 ];
 function Header() {
   // Handle logic
+  const [currentUser, setCurrentUser] = useState(() => {
+    return localStorage.getItem("currentUser") === "true";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("currentUser", currentUser.toString());
+  }, [currentUser]);
+
   const handleMenuChange = (item: MenuItemProps) => {
     console.log("item:", item);
   };
@@ -111,6 +118,11 @@ function Header() {
       title: "Log out",
       to: config.routes.home,
       separate: true,
+      onClick: () => {
+        setCurrentUser(false);
+        localStorage.setItem("currentUser", "false");
+        window.location.href = "/";
+      },
     },
   ];
 
@@ -158,7 +170,15 @@ function Header() {
               </span>
             </>
           ) : (
-            <Button primary to="login">
+            <Button
+              primary
+              to="/"
+              onClick={() => {
+                setCurrentUser(true);
+                localStorage.setItem("currentUser", "true");
+                window.location.href = "/";
+              }}
+            >
               Log in
             </Button>
           )}

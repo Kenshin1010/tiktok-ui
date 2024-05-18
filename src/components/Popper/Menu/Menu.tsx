@@ -19,6 +19,7 @@ type MenuProps = {
   items: MenuItemProps[];
   hideOnClick?: boolean;
   onChange?: (item: MenuItemProps) => void;
+  onClick?: (item: MenuItemProps) => void;
 };
 
 const defaultFn = () => {
@@ -48,6 +49,9 @@ function Menu({
           key={index}
           {...item}
           onClick={() => {
+            if (item.onClick) {
+              item.onClick();
+            }
             if (isParent) {
               // Chuyển đổi item.children thành mảng MenuItemProps[]
               const childrenArray: MenuItemProps[] = item.children
