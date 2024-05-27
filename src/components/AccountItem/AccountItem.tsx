@@ -16,7 +16,7 @@ export type AccountData = {
   tick: boolean;
 };
 
-function AccountItem({ data }: { data: AccountData }) {
+function AccountItem(data: AccountData) {
   return (
     <Link to={`/@${data.nickname}`} className={cx("wrapper")}>
       <Image className={cx("avatar")} src={data.avatar} alt="data.avatar" />
